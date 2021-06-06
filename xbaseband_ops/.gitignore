@@ -1,0 +1,9 @@
+node_modules
+build
+obj_dir
+syn
+
+/src
+*.vcd
+templates.js
+package-lock.json

@@ -1,0 +1,10 @@
+node_modules
+build
+obj_dir
+syn
+
+# for now we are commiting these because not all build environments are setup correctly
+#hdl
+*.vcd
+templates.js
+package-lock.json

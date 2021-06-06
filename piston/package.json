@@ -1,0 +1,23 @@
+{
+  "name": "piston",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./bin/templer.js --source templates/ --output templates.js && ./bin/gen.js"
+  },
+  "author": "Aliaksei Chapyzhenka",
+  "private": true,
+  "license": "Signal Laboratoris, Inc.",
+  "dependencies": {
+    "npm": "^5.7.1"
+  },
+  "devDependencies": {
+    "reqack": "^1.3.1",
+    "fs-extra": "^5.0.0",
+    "lodash.range": "^3.2.0",
+    "lodash.template": "^4.4.0",
+    "yargs": "^11.0.0"
+  }
+}
