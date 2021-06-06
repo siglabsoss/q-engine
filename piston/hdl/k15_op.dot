@@ -1,0 +1,19 @@
+digraph g {
+graph [fontname=helvetica margin=0.02 width=0 height=0];
+node [fontname=helvetica margin=0.04 width=0 height=0];
+edge [fontname=helvetica margin=0.02 width=0 height=0];
+n0 [label="k15_op"];
+n1
+n2
+n3 [label="k15_op"];
+e0 [shape=box3d; label="24,C:1.5"];
+e1 [shape=box; label="24"];
+e2 [shape=box3d; label="24,C:1.5"];
+n0 -> e0       [label="0"];
+      e0 -> n1 [label="0"];
+n1 -> e1       [label="0"];
+      e1 -> n2 [label="0"];
+n2 -> e2       [label="0"];
+      e2 -> n3 [label="0"];
+
+}

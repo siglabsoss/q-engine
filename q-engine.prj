@@ -1,0 +1,120 @@
+#--  Synopsys, Inc.
+#--  Version M-2017.03L-SP1-1
+#--  Project file C:\FPGA\scratch\q-engine-pipe.prj
+#--  Written on Wed Mar 14 15:48:16 2018
+
+
+#project files
+add_file -verilog -vlog_std sysv "./hdl/dma/dma_in.sv"
+add_file -verilog -vlog_std sysv "./hdl/dma/dma_out.sv"
+add_file -verilog -vlog_std sysv "./hdl/scalar_memory.sv"
+add_file -verilog -vlog_std sysv "./hdl/ring_bus/ring_bus.sv"
+add_file -verilog "../riscv-baseband/hdl/generated/VexRiscv.v"
+add_file -verilog -vlog_std sysv "../ip-library/fwft_fifos/sc_fifo/hdl/fwft_sc_fifo.sv"
+add_file -verilog "../ip-library/fwft_fifos/sc_fifo/hdl/generic_dpram.v"
+add_file -verilog "../ip-library/fwft_fifos/sc_fifo/hdl/generic_fifo_sc_a.v"
+add_file -verilog "../ip-library/fwft_fifos/sc_fifo/hdl/timescale.v"
+add_file -verilog -vlog_std sysv "./hdl/q_engine.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/vector_ctrl_33_2.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/vector_dat_33_2.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/kap_ctrl_dat_1_5.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/memory_slice.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/operm_ctrl_2_1.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/operm_dat_2_1.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/oumux_ctrl_2_4.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/oumux_dat_2_4.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/permutator_slice.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/piston.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/rdp_systolic_ctrl_5_2.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/rdp_systolic_dat_5_2.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/vector_slice.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/vmem_ctrl_5_4.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/vmem_dat_5_4.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/bs_dat_2_1.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/cfg_ctrl.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/cfg_dat.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/defunnel_ctrl_2_1.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/defunnel_ctrl_3_1.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/defunnel_ctrl_5_1.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/defunnel_dat_2_1.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/defunnel_dat_3_1.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/defunnel_dat_5_1.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/eb15_ctrl.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/funnel_ctrl_2_1.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/funnel_ctrl_2_2.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/funnel_ctrl_2_4.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/funnel_dat_2_1.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/funnel_dat_2_2.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/funnel_dat_2_4.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/inmux_ctrl_3_1.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/inmux_dat_3_1.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/iperm_ctrl_2_1.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/iperm_dat_2_1.sv"
+add_file -verilog -vlog_std sysv "./piston/hdl/kap_ctrl_ctrl_1_5.sv"
+
+
+
+#implementation: "rev_3"
+impl -add rev_3 -type fpga
+
+#
+#implementation attributes
+
+set_option -vlog_std sysv
+set_option -num_critical_paths 100
+set_option -num_startend_points 10
+set_option -project_relative_includes 1
+
+#device options
+set_option -technology ECP5U
+set_option -part LFE5U_85F
+set_option -package BG756C
+set_option -speed_grade -8
+set_option -part_companion ""
+
+#compilation/mapping options
+set_option -top_module "q_engine"
+
+# hdl_compiler_options
+set_option -distributed_compile 0
+
+# mapper_without_write_options
+set_option -frequency auto
+set_option -srs_instrumentation 1
+
+# mapper_options
+set_option -write_verilog 0
+set_option -write_vhdl 0
+
+# Lattice XP
+set_option -maxfan 100
+set_option -disable_io_insertion 0
+set_option -retiming 1
+set_option -pipe 1
+set_option -forcegsr no
+set_option -fix_gated_and_generated_clocks 1
+set_option -rw_check_on_ram 1
+set_option -update_models_cp 0
+set_option -syn_edif_array_rename 1
+set_option -Write_declared_clocks_only 1
+
+# NFilter
+set_option -no_sequential_opt 0
+
+# sequential_optimization_options
+set_option -symbolic_fsm_compiler 1
+
+# Compiler Options
+set_option -compiler_compatible 0
+set_option -resource_sharing 1
+set_option -multi_file_compilation_unit 1
+
+# Compiler Options
+set_option -auto_infer_blackbox 0
+
+#automatic place and route (vendor) options
+set_option -write_apr_constraint 1
+
+#set result format/file last
+project -result_file "rev_3/proj_1.edn"
+impl -active "rev_3"

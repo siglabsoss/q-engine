@@ -1,0 +1,84 @@
+
+
+module funnel_ctrl_2_4 (
+    input        t_0_req,
+    output       t_0_ack,
+    input        t_cfg_req,
+    output       t_cfg_ack,
+
+    output       i_0_req,
+    input        i_0_ack,
+
+    output       i_1_req,
+    input        i_1_ack,
+
+    output       i_2_req,
+    input        i_2_ack,
+
+    output       i_3_req,
+    input        i_3_ack,
+
+    output       [7:0] sel,
+    input        [7:0] mode,
+    input clk, reset_n
+);
+
+// 8:4
+// reduct   state    sel    req0    req1    req2    req3
+// 4        0        000    req     req     req     req
+// 4        4        001    req     req     req     req
+
+// 8:2
+// reduct   state    sel    req0    req1    req2    req3
+// 2        0        000    req     req     0       0
+// 2        2        010    req     req     0       0
+// 2        4        001    req     req     0       0
+// 2        6        011    req     req     0       0
+
+// 8:1
+// reduct   state    sel    req0    req1    req2    req3
+// 1        0        000    req     0       0       0
+// 1        1        100    req     0       0       0
+// 1        2        010    req     0       0       0
+// 1        3        110    req     0       0       0
+// 1        4        001    req     0       0       0
+// 1        5        101    req     0       0       0
+// 1        6        011    req     0       0       0
+// 1        7        111    req     0       0       0
+
+wire [2:0] reduct; assign reduct = mode[2:0];
+
+wire progress; assign progress = (
+    reduct[0] ? (t_0_req & i_0_ack) :
+    reduct[1] ? (t_0_req & i_0_ack & i_1_ack) :
+    reduct[2] ? (t_0_req & i_0_ack & i_1_ack & i_2_ack & i_3_ack) :
+    1'b0
+);
+
+reg [2:0] state;
+wire [2:0] state_nxt; assign state_nxt = state + reduct;
+
+always @(posedge clk or negedge reset_n)
+    if (~reset_n)      state <= 3'b0;
+    else if (progress) state <= state_nxt;
+
+wire last; assign last = (state_nxt == 3'b0);
+
+assign t_0_ack = last & (
+    reduct[0] ? (i_0_ack) :
+    reduct[1] ? (i_0_ack & i_1_ack) :
+    reduct[2] ? (i_0_ack & i_1_ack & i_2_ack & i_3_ack) :
+    1'b0
+);
+
+assign sel = {state[0], state[1], state[2]}; // reverse order
+
+
+assign i_0_req = t_0_req & reduct[2] | reduct[1] | reduct[0];
+assign i_1_req = t_0_req & reduct[2] | reduct[1];
+assign i_2_req = t_0_req & reduct[2];
+assign i_3_req = t_0_req & reduct[2];
+
+assign t_cfg_ack = 1'b1;
+
+endmodule

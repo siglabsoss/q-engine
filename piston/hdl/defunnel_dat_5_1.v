@@ -1,0 +1,81 @@
+
+
+// 4
+
+module defunnel_dat_5_1 (
+
+    input        [127:0] t_0_dat,
+    input        [127:0] t_1_dat,
+    input        [127:0] t_2_dat,
+    input        [127:0] t_3_dat,
+    input        [7:0] t_cfg_dat, // config
+    output       [1023:0] i_0_dat,
+    input        [7:0] enable,
+    output       [7:0] mode,
+    input clk, reset_n
+);
+
+assign mode = t_cfg_dat;
+
+wire [2:0] reduct; assign reduct = mode[2:0];
+
+// form reduct  sel
+// 4:8  4       011
+// 2:8  2       001
+// 1:8  1       000
+
+wire [2:0] sel; assign sel = reduct - 3'b1;
+
+
+wire [127:0] dat0_0; assign dat0_0 = t_0_dat;
+wire [127:0] dat0_1; assign dat0_1 = t_1_dat;
+wire [127:0] dat0_2; assign dat0_2 = t_2_dat;
+wire [127:0] dat0_3; assign dat0_3 = t_3_dat;
+wire [127:0] dat0_4; assign dat0_4 = 0;
+wire [127:0] dat0_5; assign dat0_5 = 0;
+wire [127:0] dat0_6; assign dat0_6 = 0;
+wire [127:0] dat0_7; assign dat0_7 = 0;
+
+
+wire [127:0] dat1_0; assign dat1_0 = dat0_0;
+wire [127:0] dat1_1; assign dat1_1 = sel[0] ? dat0_1 : dat0_0;
+wire [127:0] dat1_2; assign dat1_2 = dat0_2;
+wire [127:0] dat1_3; assign dat1_3 = dat0_3;
+wire [127:0] dat1_4; assign dat1_4 = dat0_4;
+wire [127:0] dat1_5; assign dat1_5 = dat0_5;
+wire [127:0] dat1_6; assign dat1_6 = dat0_6;
+wire [127:0] dat1_7; assign dat1_7 = dat0_7;
+wire [127:0] dat2_0; assign dat2_0 = dat1_0;
+wire [127:0] dat2_1; assign dat2_1 = dat1_1;
+wire [127:0] dat2_2; assign dat2_2 = sel[1] ? dat1_2 : dat1_0;
+wire [127:0] dat2_3; assign dat2_3 = sel[1] ? dat1_3 : dat1_1;
+wire [127:0] dat2_4; assign dat2_4 = dat1_4;
+wire [127:0] dat2_5; assign dat2_5 = dat1_5;
+wire [127:0] dat2_6; assign dat2_6 = dat1_6;
+wire [127:0] dat2_7; assign dat2_7 = dat1_7;
+wire [127:0] dat3_0; assign dat3_0 = dat2_0;
+wire [127:0] dat3_1; assign dat3_1 = dat2_1;
+wire [127:0] dat3_2; assign dat3_2 = dat2_2;
+wire [127:0] dat3_3; assign dat3_3 = dat2_3;
+wire [127:0] dat3_4; assign dat3_4 = sel[2] ? dat2_4 : dat2_0;
+wire [127:0] dat3_5; assign dat3_5 = sel[2] ? dat2_5 : dat2_1;
+wire [127:0] dat3_6; assign dat3_6 = sel[2] ? dat2_6 : dat2_2;
+wire [127:0] dat3_7; assign dat3_7 = sel[2] ? dat2_7 : dat2_3;
+
+
+// final flops
+
+reg [127:0] dat0; always @(posedge clk) if (enable[0]) dat0 <= dat3_0;
+reg [127:0] dat1; always @(posedge clk) if (enable[1]) dat1 <= dat3_1;
+reg [127:0] dat2; always @(posedge clk) if (enable[2]) dat2 <= dat3_2;
+reg [127:0] dat3; always @(posedge clk) if (enable[3]) dat3 <= dat3_3;
+reg [127:0] dat4; always @(posedge clk) if (enable[4]) dat4 <= dat3_4;
+reg [127:0] dat5; always @(posedge clk) if (enable[5]) dat5 <= dat3_5;
+reg [127:0] dat6; always @(posedge clk) if (enable[6]) dat6 <= dat3_6;
+reg [127:0] dat7; always @(posedge clk) if (enable[7]) dat7 <= dat3_7;
+//
+
+// final concatination
+assign i_0_dat = {dat7, dat6, dat5, dat4, dat3, dat2, dat1, dat0};
+
+endmodule
