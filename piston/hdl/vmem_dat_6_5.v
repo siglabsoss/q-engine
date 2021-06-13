@@ -332,7 +332,7 @@
 
    
 memory_slice
-#(.MEMINIT(VMEM0))
+#(.MEMINIT(VMEM0),.DEPTH(VMEM_SIZE))
 mem_slice_0
 (.clk(clk),
  .reset_n(reset_n),
@@ -365,7 +365,7 @@ mem_slice_0
  );
  
 memory_slice
-#(.MEMINIT(VMEM1))
+#(.MEMINIT(VMEM1),.DEPTH(VMEM_SIZE))
 mem_slice_1
 (.clk(clk),
  .reset_n(reset_n),
@@ -398,7 +398,7 @@ mem_slice_1
  );
  
 memory_slice
-#(.MEMINIT(VMEM2))
+#(.MEMINIT(VMEM2),.DEPTH(VMEM_SIZE))
 mem_slice_2
 (.clk(clk),
  .reset_n(reset_n),
@@ -431,7 +431,7 @@ mem_slice_2
  );
  
 memory_slice
-#(.MEMINIT(VMEM3))
+#(.MEMINIT(VMEM3),.DEPTH(VMEM_SIZE))
 mem_slice_3
 (.clk(clk),
  .reset_n(reset_n),
@@ -464,7 +464,7 @@ mem_slice_3
  );
  
 memory_slice
-#(.MEMINIT(VMEM4))
+#(.MEMINIT(VMEM4),.DEPTH(VMEM_SIZE))
 mem_slice_4
 (.clk(clk),
  .reset_n(reset_n),
@@ -497,7 +497,7 @@ mem_slice_4
  );
  
 memory_slice
-#(.MEMINIT(VMEM5))
+#(.MEMINIT(VMEM5),.DEPTH(VMEM_SIZE))
 mem_slice_5
 (.clk(clk),
  .reset_n(reset_n),
@@ -530,7 +530,7 @@ mem_slice_5
  );
  
 memory_slice
-#(.MEMINIT(VMEM6))
+#(.MEMINIT(VMEM6),.DEPTH(VMEM_SIZE))
 mem_slice_6
 (.clk(clk),
  .reset_n(reset_n),
@@ -563,7 +563,7 @@ mem_slice_6
  );
  
 memory_slice
-#(.MEMINIT(VMEM7))
+#(.MEMINIT(VMEM7),.DEPTH(VMEM_SIZE))
 mem_slice_7
 (.clk(clk),
  .reset_n(reset_n),
@@ -596,7 +596,7 @@ mem_slice_7
  );
  
 memory_slice
-#(.MEMINIT(VMEM8))
+#(.MEMINIT(VMEM8),.DEPTH(VMEM_SIZE))
 mem_slice_8
 (.clk(clk),
  .reset_n(reset_n),
@@ -629,7 +629,7 @@ mem_slice_8
  );
  
 memory_slice
-#(.MEMINIT(VMEM9))
+#(.MEMINIT(VMEM9),.DEPTH(VMEM_SIZE))
 mem_slice_9
 (.clk(clk),
  .reset_n(reset_n),
@@ -662,7 +662,7 @@ mem_slice_9
  );
  
 memory_slice
-#(.MEMINIT(VMEM10))
+#(.MEMINIT(VMEM10),.DEPTH(VMEM_SIZE))
 mem_slice_10
 (.clk(clk),
  .reset_n(reset_n),
@@ -695,7 +695,7 @@ mem_slice_10
  );
  
 memory_slice
-#(.MEMINIT(VMEM11))
+#(.MEMINIT(VMEM11),.DEPTH(VMEM_SIZE))
 mem_slice_11
 (.clk(clk),
  .reset_n(reset_n),
@@ -728,7 +728,7 @@ mem_slice_11
  );
  
 memory_slice
-#(.MEMINIT(VMEM12))
+#(.MEMINIT(VMEM12),.DEPTH(VMEM_SIZE))
 mem_slice_12
 (.clk(clk),
  .reset_n(reset_n),
@@ -761,7 +761,7 @@ mem_slice_12
  );
  
 memory_slice
-#(.MEMINIT(VMEM13))
+#(.MEMINIT(VMEM13),.DEPTH(VMEM_SIZE))
 mem_slice_13
 (.clk(clk),
  .reset_n(reset_n),
@@ -794,7 +794,7 @@ mem_slice_13
  );
  
 memory_slice
-#(.MEMINIT(VMEM14))
+#(.MEMINIT(VMEM14),.DEPTH(VMEM_SIZE))
 mem_slice_14
 (.clk(clk),
  .reset_n(reset_n),
@@ -827,7 +827,7 @@ mem_slice_14
  );
  
 memory_slice
-#(.MEMINIT(VMEM15))
+#(.MEMINIT(VMEM15),.DEPTH(VMEM_SIZE))
 mem_slice_15
 (.clk(clk),
  .reset_n(reset_n),
