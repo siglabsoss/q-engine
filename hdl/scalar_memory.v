@@ -52,6 +52,19 @@ function[31:0] get_imem;
       get_imem = {mem3[index],mem2[index],mem1[index],mem0[index]};
    end
 endfunction
+
+
+function set_imem;
+   //verilator public
+   input [31:0] addr;
+   input [31:0] data;
+   begin
+      mem0[addr] = data&8'hff;
+      mem1[addr] = (data>>8)&8'hff;
+      mem2[addr] = (data>>16)&8'hff;
+      mem3[addr] = (data>>24)&8'hff;
+   end
+endfunction
 `endif
 
 
