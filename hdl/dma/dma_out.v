@@ -35,7 +35,7 @@ module dma_out
     input wire         i0_ready,
     //outputs -> goes to the crossbar
     output wire [31:0] i1_data,
-    output wire        i1_last,
+    output wire         i1_last,
     output wire        i1_valid,
     input wire         i1_ready
     );
@@ -192,24 +192,4 @@ module dma_out
          q_interrupt<=n_interrupt;
       end
    end
-
-
-// debug counter for verilator
-`ifdef VERILATE_DEF
-    logic [31:0]              out_count;
-
-    always @(posedge clk or posedge srst) begin
-        if(srst) begin
-            out_count <= 32'h0;
-        end else begin
-            if( i1_valid & i1_ready ) begin
-                out_count <= out_count+1;
-            end
-        end
-    end
-
-`endif
-
-
-
 endmodule
